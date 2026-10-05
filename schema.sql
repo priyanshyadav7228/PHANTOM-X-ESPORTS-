@@ -1,0 +1,49 @@
+CREATE TABLE IF NOT EXISTS users (
+ id BIGSERIAL PRIMARY KEY,
+ name TEXT NOT NULL,
+ email TEXT UNIQUE NOT NULL,
+ password_hash TEXT NOT NULL,
+ uid TEXT UNIQUE NOT NULL,
+ ign TEXT NOT NULL,
+ role TEXT NOT NULL DEFAULT 'player' CHECK (role IN ('player','admin')),
+ created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+CREATE TABLE IF NOT EXISTS tournaments (
+ id BIGSERIAL PRIMARY KEY,
+ name TEXT NOT NULL,
+ category TEXT NOT NULL,
+ mode TEXT NOT NULL,
+ entry_text TEXT NOT NULL,
+ prize_text TEXT NOT NULL,
+ slots INTEGER NOT NULL DEFAULT 50,
+ status TEXT NOT NULL DEFAULT 'open',
+ created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+CREATE TABLE IF NOT EXISTS registrations (
+ id BIGSERIAL PRIMARY KEY,
+ user_id BIGINT NOT NULL REFERENCES users(id) ON DELETE CASCADE,
+ tournament_id BIGINT NOT NULL REFERENCES tournaments(id) ON DELETE CASCADE,
+ registration_code TEXT UNIQUE NOT NULL,
+ status TEXT NOT NULL DEFAULT 'pending',
+ room_id TEXT,
+ room_password TEXT,
+ created_at TIMESTAMPTZ NOT NULL DEFAULT NOW(),
+ UNIQUE(user_id,tournament_id)
+);
+CREATE TABLE IF NOT EXISTS results (
+ id BIGSERIAL PRIMARY KEY,
+ registration_id BIGINT NOT NULL REFERENCES registrations(id) ON DELETE CASCADE,
+ placement INTEGER,
+ kills INTEGER DEFAULT 0,
+ prize_text TEXT,
+ status TEXT NOT NULL DEFAULT 'draft',
+ created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);
+CREATE TABLE IF NOT EXISTS notifications (
+ id BIGSERIAL PRIMARY KEY,
+ user_id BIGINT REFERENCES users(id) ON DELETE CASCADE,
+ title TEXT NOT NULL,
+ body TEXT NOT NULL,
+ read_at TIMESTAMPTZ,
+ created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+);

@@ -1,0 +1,39 @@
+require('dotenv').config();
+const express=require('express');
+const cors=require('cors');
+const bcrypt=require('bcryptjs');
+const jwt=require('jsonwebtoken');
+const {Pool}=require('pg');
+const fs=require('fs');
+const path=require('path');
+
+const app=express();
+const PORT=Number(process.env.PORT||3000);
+const JWT_SECRET=process.env.JWT_SECRET;
+if(!JWT_SECRET){console.error('Missing JWT_SECRET');process.exit(1)}
+const pool=new Pool({connectionString:process.env.DATABASE_URL,ssl:process.env.DATABASE_URL?.includes('sslmode=require')?{rejectUnauthorized:false}:undefined});
+app.use(cors({origin:process.env.CORS_ORIGIN?.split(',').map(s=>s.trim())||true}));
+app.use(express.json({limit:'1mb'}));
+app.use(express.static(path.join(__dirname,'..','public')));
+
+const sql=fs.readFileSync(path.join(__dirname,'..','schema.sql'),'utf8');
+const demoTournaments=[
+['1v1 Headshot','HEADSHOT','1v1','₹30','₹50'],['1v1 Headshot Pro','HEADSHOT','1v1','₹40','₹70'],['1v1 Headshot Elite','HEADSHOT','1v1','₹50','₹90'],['1v1 Headshot King','HEADSHOT','1v1','₹60','₹110'],['1v1 Headshot Premium','HEADSHOT','1v1','₹100','₹180'],['1v1 Headshot Mega','HEADSHOT','1v1','₹500','₹900'],['2v2 Clash','CS','2v2','₹20','₹140'],['2v2 Clash Pro','CS','2v2','₹40','₹280'],['3v3 Clash','CS','3v3','₹30','₹250'],['3v3 Clash Pro','CS','3v3','₹60','₹500'],['4v4 Clash','CS','4v4','₹40','₹500'],['4v4 Clash Elite','CS','4v4','₹100','₹1,000'],['30 CS Headshot','HEADSHOT','30 CS','₹30','₹400'],['BR Solo','BR','Solo','₹20','₹600'],['BR Solo Pro','BR','Solo','₹50','₹1,500'],['BR Squad War','BR','Squad','₹100','₹3,000'],['BR Squad Mega','BR','Squad','₹500','₹4,000'],['BR Kill Rush','PER KILL','BR','₹20','₹10/Kill'],['BR Kill Pro','PER KILL','BR','₹50','₹20/Kill'],['BR Kill Mega','PER KILL','BR','₹100','₹50/Kill']];
+async function init(){await pool.query(sql); const {rows}=await pool.query('SELECT COUNT(*)::int c FROM tournaments'); if(rows[0].c===0){for(const t of demoTournaments) await pool.query('INSERT INTO tournaments(name,category,mode,entry_text,prize_text) VALUES($1,$2,$3,$4,$5)',t)}; if(process.env.ADMIN_EMAIL&&process.env.ADMIN_PASSWORD){const hash=await bcrypt.hash(process.env.ADMIN_PASSWORD,12); await pool.query(`INSERT INTO users(name,email,password_hash,uid,ign,role) VALUES($1,$2,$3,$4,$5,'admin') ON CONFLICT(email) DO UPDATE SET password_hash=EXCLUDED.password_hash,role='admin'`, ['PHANTOM X ADMIN',process.env.ADMIN_EMAIL.toLowerCase(),hash,'ADMIN','PX ADMIN']);}}
+function token(user){return jwt.sign({id:user.id,role:user.role},JWT_SECRET,{expiresIn:'7d'})}
+async function auth(req,res,next){try{const h=req.headers.authorization||''; if(!h.startsWith('Bearer ')) return res.status(401).json({error:'Authentication required'}); const p=jwt.verify(h.slice(7),JWT_SECRET); const {rows}=await pool.query('SELECT id,name,email,uid,ign,role,created_at FROM users WHERE id=$1',[p.id]); if(!rows[0]) return res.status(401).json({error:'User not found'}); req.user=rows[0]; next()}catch(e){res.status(401).json({error:'Invalid or expired token'})}}
+function admin(req,res,next){if(req.user?.role!=='admin')return res.status(403).json({error:'Admin access required'});next()}
+app.get('/api/health',(req,res)=>res.json({ok:true,service:'PHANTOM X ESPORTS',time:new Date().toISOString()}));
+app.post('/api/auth/register',async(req,res)=>{try{const {name,email,password,uid,ign}=req.body;if(!name||!email||!password||!uid||!ign||password.length<8)return res.status(400).json({error:'Name, email, UID, IGN and password (8+ chars) are required'});const hash=await bcrypt.hash(password,12);const {rows}=await pool.query('INSERT INTO users(name,email,password_hash,uid,ign) VALUES($1,$2,$3,$4,$5) RETURNING id,name,email,uid,ign,role,created_at',[name,email.toLowerCase(),hash,uid,ign]);const u=rows[0];res.status(201).json({token:token(u),user:u})}catch(e){res.status(e.code==='23505'?409:500).json({error:e.code==='23505'?'Email or UID already registered':'Registration failed'})}});
+app.post('/api/auth/login',async(req,res)=>{try{const {email,password}=req.body;const {rows}=await pool.query('SELECT * FROM users WHERE email=$1',[email?.toLowerCase()]);if(!rows[0]||!(await bcrypt.compare(password||'',rows[0].password_hash)))return res.status(401).json({error:'Invalid email or password'});const u=rows[0];delete u.password_hash;res.json({token:token(u),user:u})}catch(e){res.status(500).json({error:'Login failed'})}});
+app.get('/api/me',auth,(req,res)=>res.json({user:req.user}));
+app.get('/api/tournaments',async(req,res)=>{const {rows}=await pool.query('SELECT * FROM tournaments ORDER BY created_at DESC');res.json({tournaments:rows})});
+app.post('/api/tournaments',auth,admin,async(req,res)=>{const {name,category,mode,entry_text,prize_text,slots}=req.body;if(!name||!category||!mode||!entry_text||!prize_text)return res.status(400).json({error:'Missing tournament fields'});const {rows}=await pool.query('INSERT INTO tournaments(name,category,mode,entry_text,prize_text,slots) VALUES($1,$2,$3,$4,$5,$6) RETURNING *',[name,category,mode,entry_text,prize_text,Number(slots)||50]);res.status(201).json({tournament:rows[0]})});
+app.post('/api/registrations',auth,async(req,res)=>{try{const tid=Number(req.body.tournament_id);const code='PX-'+Date.now().toString(36).toUpperCase()+'-'+Math.random().toString(36).slice(2,6).toUpperCase();const {rows}=await pool.query('INSERT INTO registrations(user_id,tournament_id,registration_code) VALUES($1,$2,$3) RETURNING *',[req.user.id,tid,code]);res.status(201).json({registration:rows[0]})}catch(e){res.status(e.code==='23505'?409:400).json({error:e.code==='23505'?'Already registered':'Could not register'})}});
+app.get('/api/registrations',auth,async(req,res)=>{const {rows}=await pool.query(`SELECT r.*,t.name tournament_name,t.category,t.mode,t.entry_text,t.prize_text FROM registrations r JOIN tournaments t ON t.id=r.tournament_id WHERE r.user_id=$1 ORDER BY r.created_at DESC`,[req.user.id]);res.json({registrations:rows})});
+app.get('/api/admin/registrations',auth,admin,async(req,res)=>{const {rows}=await pool.query(`SELECT r.*,u.name,u.email,u.uid,u.ign,t.name tournament_name FROM registrations r JOIN users u ON u.id=r.user_id JOIN tournaments t ON t.id=r.tournament_id ORDER BY r.created_at DESC`);res.json({registrations:rows})});
+app.post('/api/admin/registrations/:id/approve',auth,admin,async(req,res)=>{const room='PX-'+Math.floor(100000+Math.random()*900000);const pass=Math.random().toString(36).slice(2,8).toUpperCase();const {rows}=await pool.query(`UPDATE registrations SET status='approved',room_id=$1,room_password=$2 WHERE id=$3 RETURNING *`,[room,pass,req.params.id]);if(!rows[0])return res.status(404).json({error:'Registration not found'});res.json({registration:rows[0]})});
+app.post('/api/results',auth,admin,async(req,res)=>{const {registration_id,placement,kills,prize_text}=req.body;const {rows}=await pool.query('INSERT INTO results(registration_id,placement,kills,prize_text,status) VALUES($1,$2,$3,$4,\'published\') RETURNING *',[registration_id,placement||null,kills||0,prize_text||null]);res.status(201).json({result:rows[0]})});
+app.get('/api/leaderboard',async(req,res)=>{const {rows}=await pool.query(`SELECT u.name,u.ign,COUNT(*) FILTER (WHERE r.placement=1)::int wins,COALESCE(SUM(CASE WHEN r.prize_text LIKE '₹%' THEN regexp_replace(r.prize_text,'[^0-9]','','g')::numeric ELSE 0 END),0) prize FROM results r JOIN registrations rg ON rg.id=r.registration_id JOIN users u ON u.id=rg.user_id WHERE r.status='published' GROUP BY u.id ORDER BY wins DESC,prize DESC LIMIT 100`);res.json({leaderboard:rows})});
+app.get('*',(req,res)=>res.sendFile(path.join(__dirname,'..','public','index.html')));
+init().then(()=>app.listen(PORT,()=>console.log(`PHANTOM X ESPORTS running on http://localhost:${PORT}`))).catch(e=>{console.error(e);process.exit(1)});

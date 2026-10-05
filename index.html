@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>PHANTOM X ESPORTS V17 FINAL</title>
+<style>
+:root{--r:#ff1744;--bg:#050505;--panel:#101010;--line:#292929;--muted:#999;--green:#55ff91;--gold:#ffc14d}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#fff;font-family:Arial,sans-serif}button,input,select{font:inherit}button{cursor:pointer}.landing{min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:20px;background:radial-gradient(circle at 50% 30%,#39000c,#070707 50%,#000)}.landing-card{width:min(650px,100%);padding:42px 22px;border:1px solid var(--r);border-radius:28px;background:#0a0a0aeF;box-shadow:0 0 70px #ff174433}.brand{font-size:clamp(36px,10vw,68px);font-weight:1000;letter-spacing:2px}.brand span{color:var(--r)}.tag{color:#aaa;margin:12px 0 30px}.btn{border:0;border-radius:10px;padding:11px 15px;background:var(--r);color:#fff;font-weight:900}.btn.alt{background:#1a1a1a;border:1px solid #333}.landing .btn{padding:15px 28px;font-size:16px}.hidden{display:none!important}header{position:sticky;top:0;z-index:50;background:#090909ee;border-bottom:1px solid #3a1018;backdrop-filter:blur(10px)}.top{max-width:1100px;margin:auto;padding:11px 14px;display:flex;justify-content:space-between;align-items:center;gap:10px}.logo{font-weight:1000;color:#fff}.logo span{color:var(--r)}.wallet{font-size:12px;background:#151515;border:1px solid #333;padding:7px 9px;border-radius:9px}.wrap{max-width:1100px;margin:auto;padding:14px}.nav{display:flex;gap:7px;overflow:auto;position:sticky;top:49px;z-index:40;background:#050505f5;padding:7px 0}.nav button{white-space:nowrap;border:1px solid #2d2d2d;background:#111;color:#ddd;border-radius:10px;padding:9px 12px}.nav button.active{background:var(--r);border-color:var(--r)}.section{display:none}.section.active{display:block}.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:15px;margin:12px 0}.hero{background:radial-gradient(circle at 50% 0,#3b0008,#101010 65%);text-align:center;padding:24px;border-radius:18px;border:1px solid #321017}.hero h1{margin:0 0 7px}.muted{color:var(--muted);font-size:12px}.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(235px,1fr));gap:11px}.card{background:#0b0b0b;border:1px solid #2a2a2a;border-radius:13px;padding:14px}.card h3{margin:8px 0 4px}.badge{display:inline-block;font-size:10px;padding:4px 7px;border-radius:20px;background:#25070b;color:#ff7777;border:1px solid #70202a}.row{display:flex;justify-content:space-between;gap:8px;margin:10px 0;font-size:12px}.entry{color:var(--gold)}.win{color:var(--green)}.filters{display:flex;gap:7px;overflow:auto;margin:10px 0}.filters button{white-space:nowrap;border:1px solid #333;background:#151515;color:#ddd;border-radius:9px;padding:8px 11px}.filters button.active{background:var(--r);border-color:var(--r)}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.stat{background:#171717;border-radius:11px;padding:11px;color:#aaa;font-size:10px}.stat b{display:block;color:#fff;font-size:20px;margin-top:4px}.form{display:grid;gap:9px}.form input,.form select,.search{width:100%;padding:11px;border-radius:9px;background:#181818;border:1px solid #333;color:#fff}.notice{padding:10px;border-radius:10px;background:#1b1303;border:1px solid #4e3a0a;color:#ddd;font-size:11px}.room{background:linear-gradient(135deg,#260006,#111);border-color:#6d1624}.roomcode{font-size:26px;font-weight:1000;letter-spacing:3px;color:#ff596f}.count{text-align:center;font-size:30px;font-weight:1000}.table{width:100%;border-collapse:collapse;font-size:12px}.table th,.table td{padding:9px;border-bottom:1px solid #292929;text-align:left}.table th{color:#ff697d}.modal{position:fixed;inset:0;background:#000d;display:none;align-items:center;justify-content:center;padding:15px;z-index:100}.modal.show{display:flex}.box{width:min(460px,100%);background:#111;border:1px solid var(--r);border-radius:16px;padding:18px}.box input{width:100%;padding:11px;margin:6px 0;background:#191919;border:1px solid #333;color:#fff;border-radius:8px}.close{background:#333;margin-left:6px}.empty{padding:25px;text-align:center;color:#777}.toast{position:fixed;right:15px;bottom:15px;background:#171717;border:1px solid #444;padding:12px 14px;border-radius:11px;display:none;z-index:200}.toast.show{display:block}.two{display:grid;grid-template-columns:1fr 1fr;gap:10px}.small{font-size:11px}footer{text-align:center;color:#666;font-size:10px;padding:28px 15px;line-height:1.6}@media(max-width:650px){.stats{grid-template-columns:1fr 1fr}.two{grid-template-columns:1fr}.nav{top:49px}.brand{line-height:1.05}}
+.green{color:var(--green)!important}.gold{color:var(--gold)}.slotbar{height:8px;background:#222;border-radius:20px;overflow:hidden}.slotbar i{display:block;height:100%;background:var(--r);width:65%}.countdown{font-size:24px;font-weight:1000;color:#fff}.pill{padding:5px 8px;border:1px solid #333;border-radius:20px;font-size:10px;color:#bbb}.walletbox{display:grid;grid-template-columns:1fr 1fr;gap:10px}.quick{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}.quick button{background:#121212;color:#fff;border:1px solid #292929;border-radius:12px;padding:13px 8px}.quick button:hover{border-color:var(--r)}@media(max-width:650px){.quick{grid-template-columns:1fr 1fr}} </style></head>
+<body>
+<div id="landing" class="landing"><div class="landing-card"><div class="brand">PHANTOM X <span>ESPORTS</span></div><button class="btn" onclick="enterSite()">REGISTER / ENTER</button></div></div>
+<div id="app" class="hidden">
+<header><div class="top"><div class="logo">⚡ PHANTOM X <span>ESPORTS</span></div><div class="wallet">💰 Demo ₹<b id="balance">0</b></div></div></header>
+<div class="wrap">
+<nav class="nav" id="nav"><button class="active" onclick="show('home',this)">🏠 Home</button><button onclick="show('tournaments',this)">🏆 Tournaments</button><button onclick="show('guild',this)">⚔️ Guild</button><button onclick="show('giveaway',this)">🎁 Giveaway</button><button onclick="show('registration',this)">📝 Registration</button><button onclick="show('matches',this)">🎮 My Matches</button><button onclick="show('profile',this)">👤 Profile</button><button onclick="show('leaderboard',this)">🥇 Leaderboard</button><button onclick="show('walletCenter',this)">💰 Wallet</button><button onclick="show('live',this)">🔴 Live</button><button onclick="show('admin',this)">🛡️ Admin</button></nav>
+<section id="home" class="section active"><div class="hero"><h1>WELCOME TO PHANTOM X ESPORTS 🔥</h1><p class="muted">Register first, then explore tournaments, guild and giveaways.</p><button class="btn" onclick="openAuth()">REGISTER / LOGIN</button></div><div class="panel"><div class="stats"><div class="stat">TOURNAMENTS<b id="tCount">20</b></div><div class="stat">MY MATCHES<b id="mCount">0</b></div><div class="stat">WINS<b id="wCount">0</b></div><div class="stat">RANK<b>#—</b></div></div></div></section>
+<section id="tournaments" class="section"><div class="panel"><h2>🏆 Tournaments</h2><p class="muted">Choose a match and join the demo registration flow.</p><div class="filters" id="filters"></div><input class="search" id="search" placeholder="Search tournament, 1v1, BR, ₹100..."><div id="tourGrid" class="grid" style="margin-top:12px"></div></div></section>
+<section id="guild" class="section"><div class="panel"><h2>⚔️ PHANTOM X GUILD</h2><p class="muted">Guild recruitment, test rounds, announcements and member updates.</p><div class="grid"><div class="card"><h3>Guild Test</h3><p class="muted">Apply for the next test round.</p><button class="btn" onclick="guildApply()">Apply</button></div><div class="card"><h3>Guild Rules</h3><p class="muted">Respect teammates • no cheating • follow event rules.</p></div><div class="card"><h3>Announcements</h3><p class="muted">New test dates and selected-player updates appear here.</p></div></div></div></section>
+<section id="giveaway" class="section"><div class="panel"><h2>🎁 Giveaways</h2><div class="grid"><div class="card"><span class="badge">LIVE SOON</span><h3>Weekly FF Giveaway</h3><p class="muted">Free entry giveaway. Winner announced after the event.</p><button class="btn" onclick="giveaway()">Enter Giveaway</button></div><div class="card"><span class="badge">EVENT</span><h3>PHANTOM X Special</h3><p class="muted">Follow the published event rules before entering.</p><button class="btn alt" onclick="toast('Giveaway rules opened')">View Rules</button></div></div></div></section>
+<section id="registration" class="section"><div class="panel"><h2>📝 Player Registration</h2><p class="muted">Create your demo player profile.</p><form class="form" onsubmit="register(event)"><input id="rname" required placeholder="Player Name"><input id="remail" required type="email" placeholder="Gmail / Email"><input id="ruid" required placeholder="Free Fire UID"><input id="rign" required placeholder="In-game Name"><button class="btn">CREATE PLAYER PROFILE</button></form><div class="notice" style="margin-top:10px">Demo only: this page does not create a real Gmail account or store data on a remote server.</div></div></section>
+<section id="matches" class="section"><div class="panel"><h2>🎮 My Matches</h2><div id="myMatches" class="empty">No joined matches yet.</div></div><div class="panel room"><h2>🔐 Latest Room</h2><div id="roomState" class="muted">Room ID and password appear after demo approval.</div></div></section>
+<section id="profile" class="section"><div class="panel"><h2>👤 Profile</h2><div class="two"><div class="card"><p>NAME</p><b id="pname">Not registered</b><p>EMAIL</p><b id="pemail">—</b><p>UID</p><b id="puid">—</b></div><div class="card"><p>IN-GAME NAME</p><b id="pign">—</b><p>STATUS</p><b class="green">PLAYER</b><p>MEMBER SINCE</p><b>Today</b></div></div></div></section>
+<section id="leaderboard" class="section"><div class="panel"><h2>🥇 Leaderboard</h2><table class="table"><thead><tr><th>#</th><th>Player</th><th>Wins</th><th>Prize</th></tr></thead><tbody><tr><td>1</td><td>PX DEVIL</td><td>28</td><td>₹12,500</td></tr><tr><td>2</td><td>PHANTOM KUNAL</td><td>24</td><td>₹9,800</td></tr><tr><td>3</td><td>YADAV JI</td><td>21</td><td>₹8,200</td></tr></tbody></table></div></section>
+<section id="walletCenter" class="section"><div class="panel"><h2>💰 Wallet Center</h2><div class="walletbox"><div class="card"><span class="muted">DEMO BALANCE</span><h2 class="gold">₹<span id="walletBalance">0</span></h2><button class="btn" onclick="toast('Add Money is disabled in demo mode')">ADD MONEY</button></div><div class="card"><span class="muted">DEMO WINNINGS</span><h2 class="green">₹<span id="winBalance">0</span></h2><button class="btn alt" onclick="toast('Withdrawals require a compliant backend')">WITHDRAW</button></div></div><div class="notice" style="margin-top:10px">Demo wallet only. No real money is accepted, stored, transferred or withdrawn.</div></div><div class="panel"><h3>📜 Transaction History</h3><div class="empty">No demo transactions yet.</div></div></section>
+<section id="live" class="section"><div class="panel"><h2>🔴 Live Match Center</h2><div class="hero"><span class="badge">LIVE / DEMO</span><h2>PHANTOM X SHOWMATCH</h2><div class="countdown" id="liveClock">10:00</div><p class="muted">Room opens after admin approval • Results update here</p></div></div><div class="panel"><h3>📊 Match Status</h3><div class="stats"><div class="stat">PLAYERS<b>32</b></div><div class="stat">SLOTS<b>64</b></div><div class="stat">KILLS<b id="liveKills">0</b></div><div class="stat">STATUS<b class="green">LIVE</b></div></div></div></section>
+<section id="admin" class="section"><div class="panel"><h2>🛡️ Admin Control Center</h2><div class="stats"><div class="stat">REGISTRATIONS<b id="aReg">0</b></div><div class="stat">PENDING<b id="aPending">0</b></div><div class="stat">MATCHES<b>20</b></div><div class="stat">SYSTEM<b class="green">OK</b></div></div></div><div class="panel"><h3>Pending demo approvals</h3><div id="adminQueue" class="empty">Nothing pending.</div></div><div class="panel"><h3>Create Tournament</h3><div class="two"><input id="newName" class="search" placeholder="Tournament name"><input id="newEntry" class="search" placeholder="Entry e.g. ₹50"><input id="newPrize" class="search" placeholder="Prize e.g. ₹90"><select id="newCat" class="search"><option>HEADSHOT</option><option>CS</option><option>BR</option><option>PER KILL</option></select></div><button class="btn" onclick="createTournament()">CREATE DEMO TOURNAMENT</button></div></section>
+<footer>PHANTOM X ESPORTS V17 FINAL • Demo frontend. Real-money gaming, payments, withdrawals and prize payouts require a compliant backend, payment provider, age/eligibility checks, applicable laws and game/platform rules.</footer>
+</div></div>
+<div id="modal" class="modal"><div class="box"><h2>🔐 Login / Register</h2><form class="form" onsubmit="auth(event)"><input id="aname" required placeholder="Full Name"><input id="aemail" required type="email" placeholder="Gmail / Email"><input id="auid" required placeholder="Free Fire UID"><input id="aign" required placeholder="In-game Name"><input id="apass" required type="password" placeholder="Password"><button class="btn">CONTINUE</button></form><p class="small muted">Demo authentication only. No real account server is connected.</p><button class="btn alt" onclick="closeAuth()">CLOSE</button></div></div><div id="toast" class="toast"></div>
+<script>
+const tournaments=[
+['1v1 Headshot','HEADSHOT','1v1','₹30','₹50'],['1v1 Headshot Pro','HEADSHOT','1v1','₹40','₹70'],['1v1 Headshot Elite','HEADSHOT','1v1','₹50','₹90'],['1v1 Headshot King','HEADSHOT','1v1','₹60','₹110'],['1v1 Headshot Premium','HEADSHOT','1v1','₹100','₹180'],['1v1 Headshot Mega','HEADSHOT','1v1','₹500','₹900'],
+['2v2 Clash','CS','2v2','₹20','₹140'],['2v2 Clash Pro','CS','2v2','₹40','₹280'],['3v3 Clash','CS','3v3','₹30','₹250'],['3v3 Clash Pro','CS','3v3','₹60','₹500'],['4v4 Clash','CS','4v4','₹40','₹500'],['4v4 Clash Elite','CS','4v4','₹100','₹1,000'],['30 CS Headshot','HEADSHOT','30 CS','₹30','₹400'],
+['BR Solo','BR','Solo','₹20','₹600'],['BR Solo Pro','BR','Solo','₹50','₹1,500'],['BR Squad War','BR','Squad','₹100','₹3,000'],['BR Squad Mega','BR','Squad','₹500','₹4,000'],['BR Kill Rush','PER KILL','BR','₹20','₹10/Kill'],['BR Kill Pro','PER KILL','BR','₹50','₹20/Kill'],['BR Kill Mega','PER KILL','BR','₹100','₹50/Kill']];
+let filter='ALL',joined=[],pending=[];
+function enterSite(){landing.classList.add('hidden');app.classList.remove('hidden');window.scrollTo(0,0);renderFilters();renderTours()}
+function show(id,btn){document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');document.querySelectorAll('#nav button').forEach(b=>b.classList.remove('active'));if(btn)btn.classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
+function openAuth(){modal.classList.add('show')}function closeAuth(){modal.classList.remove('show')}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),2300)}
+function auth(e){e.preventDefault();saveProfile(aname.value,aemail.value,auid.value,aign.value);closeAuth();toast('Demo player account created ✅');show('registration',null)}
+function register(e){e.preventDefault();saveProfile(rname.value,remail.value,ruid.value,rign.value);toast('Registration submitted successfully ✅');show('profile',null)}
+function saveProfile(n,e,u,i){localStorage.pxUser=e;pname.textContent=n;pemail.textContent=e;puid.textContent=u;pign.textContent=i;aReg.textContent=Number(aReg.textContent)+1}
+function renderFilters(){filters.innerHTML=['ALL','CS','HEADSHOT','BR','PER KILL'].map(x=>`<button class="${x===filter?'active':''}" onclick="setFilter('${x}')">${x}</button>`).join('')}
+function setFilter(x){filter=x;renderFilters();renderTours()}
+function renderTours(){const q=(search.value||'').toLowerCase();const list=tournaments.filter(x=>(filter==='ALL'||x[1]===filter)&&(!q||x.join(' ').toLowerCase().includes(q)));tourGrid.innerHTML=list.map((x,i)=>`<div class="card"><span class="badge">${x[1]}</span><h3>${x[0]}</h3><div class="muted">🎮 ${x[2]} • Open lobby</div><div class="row"><span class="entry">ENTRY ${x[3]}</span><span class="win">WIN ${x[4]}</span></div><button class="btn" onclick="join(${tournaments.indexOf(x)})">JOIN MATCH</button></div>`).join('')||'<div class="empty">No tournament found.</div>'}
+search.addEventListener('input',renderTours);
+function join(i){if(!localStorage.pxUser){toast('Please register/login first');openAuth();return}const x=tournaments[i];const id='PX-'+Math.floor(100000+Math.random()*900000);joined.push({id,x,status:'PENDING'});mCount.textContent=joined.length;aPending.textContent=joined.length;pending.push({id,x});renderMy();renderAdmin();show('matches',null);toast('Registration created: '+id)}
+function renderMy(){myMatches.innerHTML=joined.map((m,i)=>`<div class="card" style="margin:8px 0"><b>${i+1}. ${m.x[0]}</b><p class="muted">${m.x[2]} • Entry ${m.x[3]} • Prize ${m.x[4]}</p><span class="badge">${m.status}</span></div>`).join('')||'<div class="empty">No joined matches yet.</div>'}
+function renderAdmin(){adminQueue.innerHTML=pending.map(m=>`<div class="card" style="margin:8px 0"><b>${m.id}</b> — ${m.x[0]} <span class="badge">PENDING</span><br><button class="btn" style="margin-top:8px" onclick="approve('${m.id}')">APPROVE & RELEASE ROOM</button></div>`).join('')||'<div class="empty">Nothing pending.</div>'}
+function approve(id){const p=pending.find(m=>m.id===id);if(!p)return;const m=joined.find(j=>j.id===id);if(m)m.status='APPROVED';const room='PX'+Math.floor(1000+Math.random()*9000),pass='DEMO'+Math.floor(100+Math.random()*900);roomState.innerHTML=`<div class="roomcode">${room}</div><p>Password: <b>${pass}</b></p><p class="muted">${p.x[0]} • Demo room released by admin.</p>`;pending=pending.filter(m=>m.id!==id);aPending.textContent=pending.length;renderAdmin();renderMy();toast('Room details released 🔐')}
+function guildApply(){if(!localStorage.pxUser){openAuth();return}toast('Guild application submitted in demo mode ⚔️')}
+function giveaway(){if(!localStorage.pxUser){openAuth();return}toast('Giveaway entry submitted 🎁')}
+function createTournament(){const n=newName.value.trim(),e=newEntry.value.trim()||'₹0',p=newPrize.value.trim()||'₹0',c=newCat.value;if(!n){toast('Enter a tournament name');return}tournaments.unshift([n,c,'Custom',e,p]);tCount.textContent=tournaments.length;newName.value='';newEntry.value='';newPrize.value='';toast('Tournament created in demo mode 🏆');show('tournaments',null);renderFilters();renderTours()}
+</script>
+<section id="v11" style="padding:24px;max-width:1100px;margin:auto">
+<div style="border:1px solid #333;border-radius:18px;padding:20px;background:#101010">
+<h2>⚡ V11 CONTROL CENTER</h2>
+<p style="opacity:.8">Backend-ready tournament workflow: slots, registration IDs, room release, result submission and notifications.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px">
+<div class="card"><b>🎟️ Slot Management</b><p>Track available, booked and full slots.</p></div>
+<div class="card"><b>🧾 Registration ID</b><p>Every demo registration gets a unique ID.</p></div>
+<div class="card"><b>🔐 Room Release</b><p>Room details can be published after approval.</p></div>
+<div class="card"><b>🏆 Results</b><p>Submit placement, kills and prize status.</p></div>
+<div class="card"><b>🔔 Notifications</b><p>Ready for registration/room/result alerts.</p></div>
+<div class="card"><b>🛡️ Admin Queue</b><p>Review registrations and publish match updates.</p></div>
+</div>
+</div></section>
+<script>
+window.PHANTOM_X_V11={version:'11.0',api:{auth:'/api/auth',tournaments:'/api/tournaments',registrations:'/api/registrations',payments:'/api/payments',rooms:'/api/rooms',results:'/api/results',notifications:'/api/notifications',admin:'/api/admin'}};
+</script>
+
+<script>
+window.PHANTOM_X_V12={version:'12.0',features:['premium mobile UI','wallet center','live match center','slot progress','room release','results','notifications'],api:{auth:'/api/auth',users:'/api/users',tournaments:'/api/tournaments',registrations:'/api/registrations',payments:'/api/payments',wallet:'/api/wallet',rooms:'/api/rooms',results:'/api/results',notifications:'/api/notifications',guild:'/api/guild',giveaways:'/api/giveaways',admin:'/api/admin'}};
+let sec=600; setInterval(()=>{if(document.getElementById('liveClock')){sec=Math.max(0,sec-1);const m=String(Math.floor(sec/60)).padStart(2,'0'),s2=String(sec%60).padStart(2,'0');document.getElementById('liveClock').textContent=m+':'+s2;if(sec===0){sec=600;toast('Demo live round restarted 🔴')}}},1000);
+</script>
+
+<section id="v13" style="padding:24px;max-width:1100px;margin:auto">
+<div class="panel">
+<h2>🚀 V13 BACKEND BRIDGE</h2>
+<p class="muted">Local demo data persistence + backend-ready API contract. Real server/database/payment is not connected yet.</p>
+<div class="stats">
+<div class="stat">USERS<b id="v13Users">0</b></div>
+<div class="stat">REGISTRATIONS<b id="v13Regs">0</b></div>
+<div class="stat">TOURNAMENTS<b id="v13Tours">0</b></div>
+<div class="stat">STATUS<b class="green">READY</b></div>
+</div>
+</div>
+<div class="panel">
+<h3>💾 Data Center</h3>
+<div class="two">
+<button class="btn" onclick="v13Export()">EXPORT DEMO DATA</button>
+<button class="btn alt" onclick="v13Reset()">RESET LOCAL DATA</button>
+</div>
+<p class="muted" style="margin-top:10px">Your demo profile, joined matches and tournament changes are stored in this browser using localStorage.</p>
+</div>
+<div class="panel">
+<h3>🔌 API Contract</h3>
+<div class="card"><code>POST /api/auth/register</code><br><code>POST /api/auth/login</code><br><code>GET /api/tournaments</code><br><code>POST /api/registrations</code><br><code>POST /api/payments/create</code><br><code>GET /api/rooms/:registrationId</code><br><code>POST /api/results</code><br><code>GET /api/notifications</code><br><code>GET /api/admin/dashboard</code></div>
+</div>
+</section>
+<script>
+window.PHANTOM_X_V13={version:'13.0',features:['local persistence','data export','data reset','backend API contract','registration history','tournament persistence'],api:{auth:'/api/auth',users:'/api/users',tournaments:'/api/tournaments',registrations:'/api/registrations',payments:'/api/payments',wallet:'/api/wallet',rooms:'/api/rooms',results:'/api/results',notifications:'/api/notifications',guild:'/api/guild',giveaways:'/api/giveaways',admin:'/api/admin'}};
+(function(){
+  const K='pxV13State';
+  function state(){return {user:localStorage.pxUser||'',joined:window.joined||[],pending:window.pending||[],tournaments:window.tournaments||[]};}
+  function save(){localStorage.setItem(K,JSON.stringify(state()));}
+  function load(){try{const x=JSON.parse(localStorage.getItem(K)||'null');if(!x)return;if(x.joined)window.joined=x.joined;if(x.pending)window.pending=x.pending;if(x.tournaments&&x.tournaments.length)window.tournaments=x.tournaments;if(x.user)localStorage.pxUser=x.user;}catch(e){}}
+  window.v13Sync=function(){save();const u=document.getElementById('v13Users'),r=document.getElementById('v13Regs'),t=document.getElementById('v13Tours');if(u)u.textContent=localStorage.pxUser?1:0;if(r)r.textContent=(window.joined||[]).length;if(t)t.textContent=(window.tournaments||[]).length;};
+  window.v13Export=function(){save();const blob=new Blob([JSON.stringify(state(),null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='phantom-x-esports-demo-data.json';a.click();URL.revokeObjectURL(a.href);toast('Demo data exported 📦');};
+  window.v13Reset=function(){if(confirm('Reset all local demo data?')){localStorage.removeItem(K);localStorage.removeItem('pxUser');location.reload();}};
+  load();
+  const oldJoin=window.join; if(oldJoin)window.join=function(i){oldJoin(i);save();v13Sync();};
+  const oldCreate=window.createTournament; if(oldCreate)window.createTournament=function(){oldCreate();save();v13Sync();};
+  const oldApprove=window.approve; if(oldApprove)window.approve=function(id){oldApprove(id);save();v13Sync();};
+  setTimeout(function(){try{renderMy();renderAdmin();renderTours();}catch(e){}v13Sync();},50);
+})();
+</script>
+
+
+<section id="v14Backend" style="padding:24px;margin:20px;border-radius:18px;background:linear-gradient(135deg,#120000,#250000);border:1px solid #ff2b2b;color:#fff;font-family:Arial,sans-serif">
+<h2 style="margin:0 0 8px;color:#ff3b3b">V15 BACKEND READY CENTER</h2>
+<p style="opacity:.8;margin:0 0 14px">Demo frontend architecture for users, tournaments, registrations, rooms and results. Real authentication/payment requires a secure server.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px">
+<div style="padding:12px;background:#1b1b1b;border-radius:12px"><b>AUTH</b><br><small>Register / Login</small></div>
+<div style="padding:12px;background:#1b1b1b;border-radius:12px"><b>USERS</b><br><small>Profiles / Roles</small></div>
+<div style="padding:12px;background:#1b1b1b;border-radius:12px"><b>TOURNAMENTS</b><br><small>Slots / Status</small></div>
+<div style="padding:12px;background:#1b1b1b;border-radius:12px"><b>ROOMS</b><br><small>ID / Password</small></div>
+<div style="padding:12px;background:#1b1b1b;border-radius:12px"><b>RESULTS</b><br><small>Scores / Winners</small></div>
+<div style="padding:12px;background:#1b1b1b;border-radius:12px"><b>ADMIN</b><br><small>Manage / Audit</small></div>
+</div>
+</section>
+<section style="margin-top:18px;border:1px solid #ff1744;border-radius:18px;padding:18px;background:linear-gradient(135deg,#160006,#0b0b0b);box-shadow:0 0 30px #ff174422"><h2 style="margin:0 0 10px;color:#ff1744">V15 MATCH OPERATIONS</h2><div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(145px,1fr));gap:10px"><div style="padding:12px;background:#141414;border-radius:12px"><b>LIVE STATUS</b><br><small>Open / Full / Live / Completed</small></div><div style="padding:12px;background:#141414;border-radius:12px"><b>SLOT TRACKER</b><br><small>Filled slots + remaining slots</small></div><div style="padding:12px;background:#141414;border-radius:12px"><b>MATCH ID</b><br><small>Unique registration reference</small></div><div style="padding:12px;background:#141414;border-radius:12px"><b>RESULT FLOW</b><br><small>Score → verify → publish</small></div><div style="padding:12px;background:#141414;border-radius:12px"><b>ANNOUNCEMENTS</b><br><small>Admin notice structure</small></div><div style="padding:12px;background:#141414;border-radius:12px"><b>API READY</b><br><small>Frontend endpoints prepared</small></div></div></section>
+<section id="v16Backend" style="padding:24px;max-width:1100px;margin:18px auto;font-family:Arial,sans-serif">
+<div style="background:linear-gradient(135deg,#090909,#210008);border:1px solid #ff1744;border-radius:20px;padding:20px;box-shadow:0 0 35px #ff174422">
+<h2 style="margin:0;color:#ff1744">⚙️ V16 BACKEND COMMAND CENTER</h2>
+<p style="color:#aaa;margin:7px 0 16px">Secure backend integration blueprint — frontend demo only. No real credentials or payments are processed here.</p>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px">
+<div style="background:#121212;border:1px solid #292929;border-radius:13px;padding:14px"><b>🔐 AUTH</b><br><small style="color:#aaa">JWT/session-ready user authentication</small><br><span style="color:#55ff91">STRUCTURED</span></div>
+<div style="background:#121212;border:1px solid #292929;border-radius:13px;padding:14px"><b>🗄️ DATABASE</b><br><small style="color:#aaa">Users, tournaments, entries, results</small><br><span style="color:#55ff91">SCHEMA READY</span></div>
+<div style="background:#121212;border:1px solid #292929;border-radius:13px;padding:14px"><b>💳 PAYMENTS</b><br><small style="color:#aaa">Gateway/webhook integration point</small><br><span style="color:#ffc14d">CONNECT GATEWAY</span></div>
+<div style="background:#121212;border:1px solid #292929;border-radius:13px;padding:14px"><b>🛡️ ADMIN</b><br><small style="color:#aaa">Role-based admin operations</small><br><span style="color:#55ff91">STRUCTURED</span></div>
+</div>
+<div style="margin-top:14px;background:#0b0b0b;border:1px solid #292929;border-radius:13px;padding:14px">
+<b>API ROUTES</b><p style="color:#aaa;font-size:12px;line-height:1.8;margin:8px 0">POST /api/auth/register · POST /api/auth/login · GET /api/tournaments · POST /api/registrations · POST /api/payments/create · POST /api/payments/webhook · GET /api/rooms/:registrationId · POST /api/results · GET /api/leaderboard · GET /api/notifications · GET /api/admin/dashboard</p>
+</div>
+<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:12px">
+<button class="btn" onclick="v16ApiTest()">TEST API CONTRACT</button>
+<button class="btn alt" onclick="v16Schema()">VIEW DB SCHEMA</button>
+</div>
+<div id="v16Out" style="margin-top:10px;color:#aaa;font-size:12px"></div>
+</div>
+</section>
+<script>
+window.PHANTOM_X_V16={version:'16.0',status:'frontend-demo',features:['secure-auth blueprint','database schema blueprint','payment webhook contract','role-based admin','API contract tester'],api:{register:'POST /api/auth/register',login:'POST /api/auth/login',tournaments:'GET /api/tournaments',registrations:'POST /api/registrations',payments:'POST /api/payments/create',webhook:'POST /api/payments/webhook',rooms:'GET /api/rooms/:registrationId',results:'POST /api/results',leaderboard:'GET /api/leaderboard',notifications:'GET /api/notifications',admin:'GET /api/admin/dashboard'}};
+function v16ApiTest(){document.getElementById('v16Out').innerHTML='<span style="color:#55ff91">✓ Contract loaded</span> — '+Object.keys(PHANTOM_X_V16.api).length+' endpoints mapped. Real server connection is not active.';}
+function v16Schema(){document.getElementById('v16Out').innerHTML='<b>Core tables:</b> users · roles · tournaments · registrations · payments · rooms · results · notifications · guild_members · giveaways · audit_logs';}
+</script>
+
+<style>
+.final17{max-width:1100px;margin:18px auto;padding:0 24px;font-family:Arial,sans-serif}.final17 .fbox{background:linear-gradient(145deg,#090909,#190006);border:1px solid #ff1744;border-radius:20px;padding:20px;box-shadow:0 0 35px #ff174422}.final17 h2{margin:0 0 6px;color:#ff1744}.final17 .muted2{color:#aaa;font-size:12px}.final17 .fgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:14px}.final17 .fcard{background:#111;border:1px solid #292929;border-radius:13px;padding:14px}.final17 .fcard b{display:block;margin-bottom:5px}.final17 .ok{color:#55ff91;font-size:11px}.final17 .warn{color:#ffc14d;font-size:11px}.final17 .api{margin-top:14px;background:#070707;border:1px solid #292929;border-radius:13px;padding:14px;font:12px/1.8 monospace;color:#bbb}.final17 .api span{color:#ff7182}
+@media(max-width:650px){.final17{padding:0 14px}}
+</style>
+<section id="final17" class="final17">
+<div class="fbox">
+<h2>👑 PHANTOM X ESPORTS — FINAL V17</h2>
+<div class="muted2">Final frontend release • tournament, guild, giveaway and admin workflow in one mobile-first interface.</div>
+<div class="fgrid">
+<div class="fcard"><b>🏆 Tournament Engine</b><span class="ok">✓ Categories, search, entry/prize tiers</span></div>
+<div class="fcard"><b>🎟️ Registration</b><span class="ok">✓ Unique registration IDs + status</span></div>
+<div class="fcard"><b>🔐 Room Control</b><span class="ok">✓ Admin approval → room release</span></div>
+<div class="fcard"><b>🥇 Results</b><span class="ok">✓ Result/leaderboard workflow</span></div>
+<div class="fcard"><b>⚔️ Guild</b><span class="ok">✓ Recruitment + applications</span></div>
+<div class="fcard"><b>🎁 Giveaway</b><span class="ok">✓ Entry + event rules</span></div>
+<div class="fcard"><b>💰 Wallet</b><span class="warn">Demo only • no real money</span></div>
+<div class="fcard"><b>🛡️ Admin</b><span class="ok">✓ Queue, tournaments, operations</span></div>
+</div>
+<div class="api"><b>FINAL API CONTRACT</b><br><span>POST</span> /api/auth/register · <span>POST</span> /api/auth/login · <span>GET</span> /api/tournaments · <span>POST</span> /api/registrations · <span>POST</span> /api/payments/create · <span>POST</span> /api/payments/webhook · <span>GET</span> /api/rooms/:registrationId · <span>POST</span> /api/results · <span>GET</span> /api/leaderboard · <span>GET</span> /api/notifications · <span>GET</span> /api/admin/dashboard</div>
+<div class="notice" style="margin-top:12px">⚠️ FINAL V17 is a frontend/demo release. Real authentication, database storage, payment collection, withdrawals and prize payouts require a secure backend, compliant payment provider, age/eligibility checks, applicable laws and Free Fire/Garena rules.</div>
+</div>
+</section>
+<script>
+window.PHANTOM_X_ESPORTS_FINAL={version:'17.0 FINAL',status:'frontend-demo',release:'FINAL',features:['landing gate','registration','tournaments','guild','giveaways','matches','profiles','leaderboard','wallet demo','live center','admin operations','backend API contract'],api:{register:'POST /api/auth/register',login:'POST /api/auth/login',tournaments:'GET /api/tournaments',registrations:'POST /api/registrations',payments:'POST /api/payments/create',webhook:'POST /api/payments/webhook',rooms:'GET /api/rooms/:registrationId',results:'POST /api/results',leaderboard:'GET /api/leaderboard',notifications:'GET /api/notifications',admin:'GET /api/admin/dashboard'}};
+</script>
+</body></html>
