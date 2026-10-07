@@ -11,7 +11,10 @@ const app=express();
 const PORT=Number(process.env.PORT||3000);
 const JWT_SECRET=process.env.JWT_SECRET;
 if(!JWT_SECRET){console.error('Missing JWT_SECRET');process.exit(1)}
-const pool=new Pool({connectionString:process.env.DATABASE_URL,ssl:process.env.DATABASE_URL?.includes('sslmode=require')?{rejectUnauthorized:false}:undefined});
+const pool=new Pool({
+  connectionString:process.env.DATABASE_URL,
+  ssl:{rejectUnauthorized:false}
+});
 app.use(cors({origin:process.env.CORS_ORIGIN?.split(',').map(s=>s.trim())||true}));
 app.use(express.json({limit:'1mb'}));
 app.use(express.static(__dirname));
